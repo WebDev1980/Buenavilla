@@ -1,0 +1,181 @@
+/* Botón hamburguesa */
+.toggle {
+  position: fixed;
+  left: 16px;
+  top: 50vh;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid  #f1a562;
+  color: var(--color-text);
+  box-shadow: var(--shadow-fab);
+  cursor: pointer;
+  z-index: 1100;
+  transition: transform 0.2s ease;
+}
+
+/* Hover: agranda suavemente */
+.toggle:hover,
+.toggle:focus-visible {
+  transform: scale(1.1);
+  background: var(--color-accent);
+}
+
+:root[data-theme="dark"] .toggle:hover {
+  background: var(--color-secondary);
+}
+
+/* Active: rebote agradable */
+.toggle:active {
+  animation: bounceTap 0.3s ease;
+}
+
+/* Reutilizamos la animación de rebote */
+@keyframes bounceTap {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.9); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* Panel contenedor — transparente y compacto */
+.panel {
+  position: fixed;
+  left: 16px;
+  top: 50vh;
+  transform: translate(0, -50%);
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+  box-shadow: none;
+  z-index: 1099;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 8px;
+  display: inline-block;
+  max-width: 64px;
+}
+
+/* Estados del panel */
+.closed {
+  transform: translate(-120%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.open {
+  transform: translate(0, -50%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bounceIn {
+  animation: jellySlide 0.6s ease;
+}
+
+@keyframes jellySlide {
+  0%   { transform: translate(-120%, -50%) scale(0.9); }
+  40%  { transform: translate(0, -50%) scale(1.05); }
+  70%  { transform: translate(0, -50%) scale(0.97); }
+  100% { transform: translate(0, -50%) scale(1); }
+}
+
+/* Encabezado con botón de cierre centrado */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+/* Botón de cierre — sin sombra */
+.close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  transition: transform 0.2s ease;
+}
+
+:root[data-theme="dark"] .close {
+  color: var(--color-bg-2);
+}
+
+/* Hover: agranda suavemente */
+.close:hover,
+.close:focus-visible {
+  transform: scale(1.1);
+}
+
+/* Active: rebote agradable */
+.close:active {
+  animation: bounceTap 0.3s ease;
+}
+
+/* Animación de rebote */
+@keyframes bounceTap {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.9); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Cuerpo del panel */
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+/* Botones de acción — diseño intacto, sin sombra */
+.iconButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-primary), #f1a562);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.1);
+}
+
+.iconButton:active {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  .toggle {
+    width: 33px;
+    height: 33px;
+    border-radius: 8px;
+  }
+  .iconButton {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  }
+}

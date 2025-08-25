@@ -1,0 +1,20 @@
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 28px;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: none; cursor: pointer;
+  background: var(--color-primary);
+  color: #fff; font-size: 22px;
+  box-shadow: var(--shadow-fab);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+.fab:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  .fab {
+    bottom: 84px !important; /* fuerza el cambio para evitar conflictos */
+  }
+}
+

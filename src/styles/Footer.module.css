@@ -1,0 +1,53 @@
+.footer {
+  padding: 32px 0;
+  background: var(--color-secondary);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  color: var(--color-text-dark);
+}
+
+.logo {
+  width: 128px;
+  height: 100px;
+  background-image: url('/images/logo3.svg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Animación atrevida al clic */
+.bounce {
+  animation: toing 0.4s ease;
+}
+
+@keyframes toing {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(0.33); }
+  50%  { transform: scale(1.2); }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.typewriter {
+  font-size: clamp(0.66rem, 3.0vw, 0.85rem);
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+

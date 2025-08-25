@@ -1,0 +1,200 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: var(--header-height);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-header);
+  backdrop-filter: var(--backdrop-blur);
+}
+
+.inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.brand:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.logo {
+  width: 74px;
+  height: 74px;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.nav {
+  display: none;
+}
+
+.list {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--color-secondary);
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.link:hover,
+.link.active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Enlaces en tema oscuro */
+:root[data-theme="dark"] .link {
+  color: var(--color-text-dark);
+}
+
+:root[data-theme="dark"] .link:hover,
+:root[data-theme="dark"] .link.active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.hamburger {
+  --size: 44px;
+  width: var(--size);
+  height: var(--size);
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.bars {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  position: relative;
+  transition: transform var(--transition-mid);
+}
+
+.bars::before,
+.bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform var(--transition-mid), top var(--transition-mid),
+    opacity var(--transition-mid);
+}
+
+.bars::before {
+  top: -8px;
+}
+
+.bars::after {
+  top: 8px;
+}
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-mid);
+}
+
+.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileList {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  left: 0;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform var(--transition-mid), opacity var(--transition-mid);
+}
+
+.open .mobileList {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobileLink,
+.mobileHome {
+  display: block;
+  padding: 12px 10px;
+  border-radius: 10px;
+  color: var(--color-text);
+  background: transparent;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.mobileLink:hover,
+.mobileHome:hover,
+.mobileLink.active,
+.mobileHome.active {
+  background-color: var(--color-hover);
+  color: var(--color-primary);
+}
+
+/* Tema oscuro para enlaces móviles */
+:root[data-theme="dark"] .mobileLink,
+:root[data-theme="dark"] .mobileHome {
+  color: var(--color-text-dark);
+}
+
+:root[data-theme="dark"] .mobileLink:hover,
+:root[data-theme="dark"] .mobileHome:hover,
+:root[data-theme="dark"] .mobileLink.active,
+:root[data-theme="dark"] .mobileHome.active {
+  background-color: var(--color-hover-dark);
+  color: var(--color-primary);
+}
+
+/* Responsive: mostrar menú en escritorio */
+@media (min-width: 768px) {
+  .nav {
+    display: block;
+  }
+  .hamburger {
+    display: none;
+  }
+  .mobileMenu {
+    display: none;
+  }
+}

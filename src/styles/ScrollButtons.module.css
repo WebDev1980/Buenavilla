@@ -1,0 +1,22 @@
+.stack {
+  position: fixed;
+  right: 16px;
+  top: 52vh;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 10px;
+  z-index: 1100;
+}
+
+.btn {
+  width: 46px; height: 46px; border-radius: 14px;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,0.55);
+  color: #fff; border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+  backdrop-filter: var(--backdrop-blur);
+  font-size: 20px;
+}
+.btn:hover { transform: translateY(-1px); background: rgba(0,0,0,0.7); }
+.btn:active { transform: translateY(0); }

@@ -1,0 +1,31 @@
+:root {
+  --color-primary: #E67E22;
+  --color-secondary: #4A4A4A;
+  --color-bg: #FFFFFF;
+  --color-bg-dark: #222222;
+  --color-accent: #F5F2EF;
+  --color-text: #222222;
+  --color-text-dark: #F5F2EF;
+  --last-line-color: #555;
+  --color-tooltip: #4A4A4A;
+
+  --shadow-card: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-header: 0 4px 18px rgba(0,0,0,0.10);
+  --shadow-fab: 0 10px 30px rgba(0,0,0,0.18);
+  --backdrop-blur: saturate(120%) blur(10px);
+
+  --transition-fast: 100ms ease;
+  --transition-mid: 280ms ease;
+  --transition-slow: 420ms ease;
+
+  --header-height: 64px;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: var(--color-bg-dark);
+  --color-bg-2: #FFFFFF;
+  --color-text: var(--color-text-dark);
+  --color-accent: #2b2927;
+  --last-line-color: #aaa;
+  --color-tooltip: #000;
+}
