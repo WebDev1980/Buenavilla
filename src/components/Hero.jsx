@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "@styles/Hero.module.css";
+
 export default function Hero({
   imageSrc = `${import.meta.env.BASE_URL}images/portada.webp`,
   headline = "Vecinos Buenavilla A.C.",
@@ -10,7 +11,10 @@ export default function Hero({
   const [typedInfoText, setTypedInfoText] = useState("");
   const [headlineDone, setHeadlineDone] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
+  const [logoReady, setLogoReady] = useState(false);
+  const [bounce, setBounce] = useState(false);
   const [showContactButton, setShowContactButton] = useState(false);
+
   useEffect(() => {
     const delay = setTimeout(() => {
       let i = 0;
@@ -26,6 +30,7 @@ export default function Hero({
     }, 2000);
     return () => clearTimeout(delay);
   }, [headline]);
+
   useEffect(() => {
     if (!headlineDone) return;
     let j = 0;
@@ -36,6 +41,7 @@ export default function Hero({
       if (next === lead) {
         clearInterval(interval);
         setShowLogo(true);
+        setTimeout(() => setLogoReady(true), 800); // listo para clic tras fadeIn
         setTimeout(() => {
           let k = 0;
           const info =
@@ -54,56 +60,61 @@ export default function Hero({
     }, 20);
     return () => clearInterval(interval);
   }, [headlineDone, lead]);
+
   return (
     <>
-      {" "}
       <section
         id="inicio"
         data-anchor="inicio"
         className={styles.hero}
         aria-labelledby="titulo-hero"
       >
-        {" "}
         <div
           className={styles.mediaWrap}
           role="img"
           aria-label="Portada de Vecinos Buenavilla A.C."
         >
-          {" "}
           <img
             className={styles.image}
             src={imageSrc}
             alt="Portada de la comunidad Vecinos Buenavilla A.C."
             loading="eager"
-          />{" "}
-        </div>{" "}
+          />
+        </div>
+
         <img
-          className={`${styles.watermark} ${showLogo ? styles.visible : ""}`}
+          className={`${styles.watermark} 
+            ${showLogo ? styles.visible : ""} 
+            ${logoReady ? styles.logoReady : ""} 
+            ${bounce ? styles.bounce : ""}`}
           src={`${import.meta.env.BASE_URL}images/logo3.svg`}
           alt="Logotipo Vecinal"
-        />{" "}
+          onClick={() => {
+            if (logoReady) {
+              setBounce(true);
+              setTimeout(() => setBounce(false), 400);
+            }
+          }}
+        />
+
         <div className={`container ${styles.content}`}>
-          {" "}
           <h1 id="titulo-hero" className={styles.title}>
-            {" "}
-            {typedHeadline}{" "}
-          </h1>{" "}
-          <p className={styles.lead}>{typedLead}</p>{" "}
-        </div>{" "}
-      </section>{" "}
+            {typedHeadline}
+          </h1>
+          <p className={styles.lead}>{typedLead}</p>
+        </div>
+      </section>
+
       <section className={`container ${styles.infoBox}`}>
-        {" "}
-        <p className={styles.infoText}>{typedInfoText}</p>{" "}
+        <p className={styles.infoText}>{typedInfoText}</p>
         {showContactButton && (
           <div className={styles.buttonWrap}>
-            {" "}
             <a href="#contacto" className={styles.contactButton}>
-              {" "}
-              Contáctanos{" "}
-            </a>{" "}
+              Contáctanos
+            </a>
           </div>
-        )}{" "}
-      </section>{" "}
+        )}
+      </section>
     </>
   );
 }

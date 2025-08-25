@@ -18,19 +18,20 @@
   filter: saturate(105%);
 }
 
+/* --- Logo inicial --- */
 .watermark {
-  position: absolute; 
+  position: absolute;
   border-radius: 10px;
-  top: 18px; 
+  top: 18px;
   right: 18px;
   width: max(128px, 8vw);
   height: auto;
   opacity: 0;
   transform: scale(0.8);
   z-index: 1;
-  /* transition: transform var(--transition-mid), opacity var(--transition-mid); */
 }
 
+/* Animación de entrada */
 .visible {
   animation: fadeInScale 0.8s ease-out forwards;
 }
@@ -50,14 +51,25 @@
   }
 }
 
-.watermark:hover { 
-  animation: bounceScale 0.4s ease-out;
+/* Estado listo para interacción por clic (sin animación activa) */
+.logoReady {
+  animation: none;
+  opacity: 1;
+  transform: scale(1);
+  cursor: pointer;
 }
-@keyframes bounceScale {
+
+/* Rebote en clic */
+.bounce {
+  animation: toing 0.4s ease;
+}
+
+@keyframes toing {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.11); }
-  70%  { transform: scale(0.98); }
-  100% { transform: scale(1.04); }
+  20%  { transform: scale(0.33); }
+  50%  { transform: scale(1.2); }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
 
 .content {
