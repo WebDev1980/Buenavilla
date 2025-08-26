@@ -9,8 +9,7 @@ export default function About() {
 
     const boxes = document.querySelectorAll(`.${styles.valueBox}`);
 
-    const handleClick = (e) => {
-      e.stopPropagation();
+    const handleTouch = (e) => {
       const box = e.currentTarget;
 
       boxes.forEach((b) => b.classList.remove(styles.showTooltip));
@@ -21,22 +20,14 @@ export default function About() {
       }, 3000);
     };
 
-    const handleOutsideClick = (e) => {
-      if (![...boxes].some((box) => box.contains(e.target))) {
-        boxes.forEach((b) => b.classList.remove(styles.showTooltip));
-      }
-    };
-
     boxes.forEach((box) => {
-      box.addEventListener("click", handleClick);
+      box.addEventListener("touchstart", handleTouch);
     });
-    document.addEventListener("click", handleOutsideClick);
 
     return () => {
       boxes.forEach((box) => {
-        box.removeEventListener("click", handleClick);
+        box.removeEventListener("touchstart", handleTouch);
       });
-      document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
