@@ -21,9 +21,9 @@ export default function Contact({
         <a
           className={styles.card}
           href={telHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir WhatsApp"
+          // target="_blank"
+          // rel="noopener noreferrer"
+          aria-label="Marcar Número Telefónico"
         >
           <div className={styles.icon}>
             <svg
@@ -43,7 +43,7 @@ export default function Contact({
           </div>
         </a>
 
-        <a className={styles.card} href={mapsHrefPin} aria-label="Enviar correo">
+        <a className={styles.card} href={mailHref} aria-label="Enviar correo">
           <div className={styles.icon}>
             <svg
               viewBox="0 0 24 24"
