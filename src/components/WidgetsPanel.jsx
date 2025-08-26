@@ -84,7 +84,8 @@ export default function WidgetsPanel({
           </a>
 
           <a
-            href={`mailto:${email}`}
+            href={`https://mail.google.com/mail/?view=cm&to=contacto@vecinosbuenavilla.com`}
+            target="_blank"
             aria-label="Enviar correo"
             className={styles.iconButton}
           >

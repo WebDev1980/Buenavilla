@@ -43,7 +43,7 @@ export default function Contact({
           </div>
         </a>
 
-        <a className={styles.card} href={mailHref} aria-label="Enviar correo">
+        <a className={styles.card} href={mailHref} target="_blank" aria-label="Enviar correo">
           <div className={styles.icon}>
             <svg
               viewBox="0 0 24 24"
