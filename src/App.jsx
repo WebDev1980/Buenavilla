@@ -78,7 +78,7 @@ export default function App() {
           <div className="container">
             {" "}
             <Contact
-              // whatsNumber="472 100 5615"
+              whatsNumber="472 100 5615"
               email="contacto@vecinosbuenavilla.com"
               address={`A Trejo 74\nCol. Estrella\nSilao de la Victoria, Gto.`}
               mapsHrefEmbed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.123456789!2d-101.43107!3d20.92776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b9c9e675bb211%3A0x2de6e6b8f8c1e55c!2sBuenavilla%20Residencial!5e0!3m2!1ses!2smx!4v1691234567890!5m2!1ses!2smx"

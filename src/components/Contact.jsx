@@ -10,7 +10,7 @@ export default function Contact({
 }) {
   // const waHref = `https://wa.me/${whatsNumber}`;
   const telHref = `tel:${whatsNumber.replace(/\D/g, '')}`;
-  const mailHref = `mailto:${email}`;
+  const mailHref = `https://mail.google.com/mail/?view=cm&to=contacto@vecinosbuenavilla.com`;
 
   return (
     <div className={styles.wrap}>
