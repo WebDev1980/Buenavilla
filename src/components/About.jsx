@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "@styles/About.module.css";
 
 export default function About() {
+  const timeoutRef = useRef(null);
+
   useEffect(() => {
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -9,25 +11,52 @@ export default function About() {
 
     const boxes = document.querySelectorAll(`.${styles.valueBox}`);
 
-    const handleTouch = (e) => {
-      const box = e.currentTarget;
-
+    const showTooltip = (box) => {
       boxes.forEach((b) => b.classList.remove(styles.showTooltip));
       box.classList.add(styles.showTooltip);
+    };
 
-      setTimeout(() => {
+    const hideAll = () => {
+      boxes.forEach((b) => b.classList.remove(styles.showTooltip));
+    };
+
+    const handleTouchStart = (e) => {
+      e.stopPropagation();
+      e.preventDefault(); // evita el estado “:active” indefinido
+      const box = e.currentTarget;
+
+      showTooltip(box);
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
         box.classList.remove(styles.showTooltip);
+        timeoutRef.current = null;
       }, 3000);
     };
 
+    const handleOutsideTouch = (e) => {
+      if (![...boxes].some((box) => box.contains(e.target))) {
+        hideAll();
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+      }
+    };
+
     boxes.forEach((box) => {
-      box.addEventListener("touchstart", handleTouch);
+      box.addEventListener("touchstart", handleTouchStart);
     });
+    document.addEventListener("touchstart", handleOutsideTouch);
 
     return () => {
       boxes.forEach((box) => {
-        box.removeEventListener("touchstart", handleTouch);
+        box.removeEventListener("touchstart", handleTouchStart);
       });
+      document.removeEventListener("touchstart", handleOutsideTouch);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -82,7 +111,7 @@ export default function About() {
             <div className={styles.valueBox}>
               TRANSPARENCIA
               <span className={styles.tooltip}>
-                La verdad como núcleo aboluto de confianza vecinal.
+                La verdad como núcleo absoluto de confianza vecinal.
               </span>
             </div>
             <div className={styles.valueBox}>
