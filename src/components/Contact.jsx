@@ -8,7 +8,8 @@ export default function Contact({
   mapsHrefEmbed = '',
   mapsHrefPin = ''
 }) {
-  const waHref = `https://wa.me/${whatsNumber}`;
+  // const waHref = `https://wa.me/${whatsNumber}`;
+  const telHref = `tel:${whatsNumber.replace(/\D/g, '')}`;
   const mailHref = `mailto:${email}`;
 
   return (
@@ -19,7 +20,7 @@ export default function Contact({
       <div className={styles.grid}>
         <a
           className={styles.card}
-          href={waHref}
+          href={telHref}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Abrir WhatsApp"
